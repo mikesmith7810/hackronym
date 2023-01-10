@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.xdesign.cake.demonstrators.functionalinterface.SupplierDemonstratorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-12-16T15:22:57" hostname="TN4L5WKY63" time="0.009">
+  <properties/>
+  <testcase name="shouldPrintSomeOutputToConsole()" classname="com.xdesign.cake.demonstrators.functionalinterface.SupplierDemonstratorTest" time="0.009"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

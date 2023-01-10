@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.xdesign.cake.helper.MessageComposerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-12-16T15:22:57" hostname="TN4L5WKY63" time="0.07">
+  <properties/>
+  <testcase name="shouldCreateMessageFromContents()" classname="com.xdesign.cake.helper.MessageComposerTest" time="0.039"/>
+  <testcase name="shouldCreateMessageForLearning()" classname="com.xdesign.cake.helper.MessageComposerTest" time="0.029"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
