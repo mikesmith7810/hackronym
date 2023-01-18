@@ -11,10 +11,6 @@ public class HackronymConfig {
 	@Bean
 	public App hackronymApp() {
 		App app = new App();
-		//		app.command( "/hello", ( req, ctx ) -> {
-		//			return ctx.ack( "What's up?" );
-		//		} );
-		//
 
 		return app;
 	}

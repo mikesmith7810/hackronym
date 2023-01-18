@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.xdesign.hackronym.slash.acronym.AcronymCommandTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-01-18T14:38:51" hostname="TN4L5WKY63" time="0.328">
+  <properties/>
+  <testcase name="shouldCallAcronymRetriever()" classname="com.xdesign.hackronym.slash.acronym.AcronymCommandTest" time="0.328"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

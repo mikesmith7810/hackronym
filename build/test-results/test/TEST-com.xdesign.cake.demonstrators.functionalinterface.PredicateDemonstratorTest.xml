@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.xdesign.cake.demonstrators.functionalinterface.PredicateDemonstratorTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-12-16T15:22:45" hostname="TN4L5WKY63" time="0.636">
-  <properties/>
-  <testcase name="shouldCheckIfWordsStartsWithS()" classname="com.xdesign.cake.demonstrators.functionalinterface.PredicateDemonstratorTest" time="0.619"/>
-  <testcase name="shouldFilterListOfWords()" classname="com.xdesign.cake.demonstrators.functionalinterface.PredicateDemonstratorTest" time="0.011"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
