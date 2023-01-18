@@ -15,11 +15,11 @@ import lombok.extern.slf4j.Slf4j;
 @SlashCommand("whatonearthis")
 @Slf4j
 @Component
-public class AcronymCommand extends MessageExtractingCommand {
+public class AcronymGetCommand extends MessageExtractingCommand {
 
 	private final AcronymRetriever acronymRetriever;
 
-	public AcronymCommand( final AcronymRetriever acronymRetriever ) {
+	public AcronymGetCommand( final AcronymRetriever acronymRetriever ) {
 		this.acronymRetriever = acronymRetriever;
 	}
 

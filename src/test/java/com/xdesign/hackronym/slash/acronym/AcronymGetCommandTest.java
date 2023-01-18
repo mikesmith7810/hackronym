@@ -19,9 +19,9 @@ import com.xdesign.hackronym.retriever.AcronymRetriever;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class AcronymCommandTest {
+public class AcronymGetCommandTest {
 
-	private AcronymCommand acronymCommand;
+	private AcronymGetCommand acronymCommand;
 
 	@Mock
 	private AcronymRetriever acronymRetriever;
@@ -34,7 +34,7 @@ public class AcronymCommandTest {
 
 	@BeforeEach
 	public void setup() {
-		acronymCommand = new AcronymCommand( acronymRetriever );
+		acronymCommand = new AcronymGetCommand( acronymRetriever );
 
 		when( acronymRetriever.getAcronym( "ASAP" ) ).thenReturn( Acronym.builder()
 				.acronym( "ASAP" )
