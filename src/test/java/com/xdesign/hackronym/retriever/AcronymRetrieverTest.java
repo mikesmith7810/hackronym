@@ -35,6 +35,13 @@ public class AcronymRetrieverTest {
 	}
 
 	@Test
+	public void shoudlGetAllAcronyms() {
+		acronymRetriever.getAll();
+
+		verify( acronymRepository ).findAll();
+	}
+
+	@Test
 	public void shouldReturnNiceMessageIfNoAcronymFound() {
 		when( acronymRepository.getByAcronym( "ASAP" ) ).thenReturn( null );
 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.xdesign.hackronym.retriever.AcronymRetrieverTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2023-01-18T17:40:08" hostname="TN4L5WKY63" time="0.284">
+  <properties/>
+  <testcase name="shoudlGetAllAcronyms()" classname="com.xdesign.hackronym.retriever.AcronymRetrieverTest" time="0.224"/>
+  <testcase name="shoudlCallOutToAcronymRepository()" classname="com.xdesign.hackronym.retriever.AcronymRetrieverTest" time="0.004"/>
+  <testcase name="shouldReturnNiceMessageIfNoAcronymFound()" classname="com.xdesign.hackronym.retriever.AcronymRetrieverTest" time="0.053"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

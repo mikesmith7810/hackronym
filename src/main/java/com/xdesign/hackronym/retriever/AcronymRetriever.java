@@ -1,5 +1,6 @@
 package com.xdesign.hackronym.retriever;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Component;
@@ -22,5 +23,9 @@ public class AcronymRetriever {
 			return "No acronym found - you can add a new one though using /addacronym";
 		} else
 			return result.get().toString();
+	}
+
+	public List<Acronym> getAll() {
+		return acronymRepository.findAll();
 	}
 }
