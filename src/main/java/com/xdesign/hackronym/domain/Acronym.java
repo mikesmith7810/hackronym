@@ -30,11 +30,11 @@ public class Acronym {
 	@Column(name = "meaning")
 	private String meaning;
 
-    @Column(name = "description")
+	@Column(name = "description")
 	private String description;
 
 	@Override
-	public String toString(){
+	public String toString() {
 		return acronym + " : " + meaning + " - " + description + ".";
 	}
 

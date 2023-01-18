@@ -19,7 +19,7 @@ public class AcronymCommand extends MessageExtractingCommand {
 
 	private final AcronymRetriever acronymRetriever;
 
-	public AcronymCommand(final AcronymRetriever acronymRetriever){
+	public AcronymCommand( final AcronymRetriever acronymRetriever ) {
 		this.acronymRetriever = acronymRetriever;
 	}
 
@@ -28,7 +28,7 @@ public class AcronymCommand extends MessageExtractingCommand {
 
 		return context.ack( SlashCommandResponse.builder()
 				.responseType( "in_channel" )
-				.text( "Deciphered : " + acronymRetriever.getAcronym(message).toString() )
+				.text( acronymRetriever.getAcronym( message ) )
 				.build() );
 	}
 }

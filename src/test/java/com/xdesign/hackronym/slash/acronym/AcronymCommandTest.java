@@ -36,15 +36,12 @@ public class AcronymCommandTest {
 	public void setup() {
 		acronymCommand = new AcronymCommand( acronymRetriever );
 
-		when( acronymRetriever.getAcronym("ASAP") ).thenReturn( Acronym.builder()
+		when( acronymRetriever.getAcronym( "ASAP" ) ).thenReturn( Acronym.builder()
 				.acronym( "ASAP" )
 				.meaning( "As soon as possible" )
 				.description( "Common desc" )
-				.build() );
-		when( slashCommandContext.ack( SlashCommandResponse.builder()
-				.responseType( "in_channel" )
-				.text( "Deciphered : ASAP : As soon as possible - Common desc." )
-				.build() ) ).thenReturn( Response.builder().body( "blah" ).build() );
+				.build()
+				.toString() );
 	}
 
 	@Test
@@ -52,6 +49,21 @@ public class AcronymCommandTest {
 		final Response response = acronymCommand.doRespond( "ASAP", slashCommandRequest,
 				slashCommandContext );
 
-		verify( acronymRetriever ).getAcronym("ASAP");
+		verify( acronymRetriever ).getAcronym( "ASAP" );
+	}
+
+	@Test
+	public void shouldReturnNiceMessageIfNotFound() {
+
+		when( acronymRetriever.getAcronym( "ASAP" ) )
+				.thenReturn( "No acronym found - you can add a new one though using /addacronym" );
+
+		final Response response = acronymCommand.doRespond( "ASAP", slashCommandRequest,
+				slashCommandContext );
+
+		verify( slashCommandContext ).ack( SlashCommandResponse.builder()
+				.responseType( "in_channel" )
+				.text( "No acronym found - you can add a new one though using /addacronym" )
+				.build() );
 	}
 }

@@ -38,14 +38,12 @@ public class AppHomeListener implements BoltEventHandler<AppHomeOpenedEvent> {
 		return context.ack();
 	}
 
-
 	private View existingUserView( final EventsApiPayload<AppHomeOpenedEvent> event ) {
 		return view( view -> view.type( "home" )
 				.blocks( asBlocks( header( h -> h.text( plainText( "Welcome!" ) ) ),
 						section( section -> section.text( markdownText( mt -> mt.text(
 								"Hi there, " + " I'm can decipher any acronym!! :robot_face:.\n" ) ) ) ),
-						divider(), section( section -> section.text( markdownText(
-								mt -> mt.text(
-										"Just type a sentence with an acronym and i'll decipher the acronyms!" ) ) ) ) ) ) );
+						divider(), section( section -> section.text( markdownText( mt -> mt.text(
+								"Just type a sentence with an acronym and i'll decipher the acronyms!" ) ) ) ) ) ) );
 	}
 }

@@ -1,6 +1,8 @@
 package com.xdesign.hackronym.retriever;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,27 +12,35 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.xdesign.hackronym.db.AcronymRepository;
-import com.xdesign.hackronym.domain.Acronym;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class AcronymRetrieverTest {
 
-    private AcronymRetriever acronymRetriever;
+	private AcronymRetriever acronymRetriever;
 
-    @Mock
-    private AcronymRepository acronymRepository;
+	@Mock
+	private AcronymRepository acronymRepository;
 
-    @BeforeEach
+	@BeforeEach
 	public void setup() {
-        this.acronymRetriever = new AcronymRetriever(acronymRepository);
-    }
+		this.acronymRetriever = new AcronymRetriever( acronymRepository );
+	}
 
-    @Test
-    public void shoudlCallOutToAcronymRepository(){
-        Acronym acronym = acronymRetriever.getAcronym("ASAP");
+	@Test
+	public void shoudlCallOutToAcronymRepository() {
+		String acronym = acronymRetriever.getAcronym( "ASAP" );
 
-        verify(acronymRepository).getByAcronym("ASAP");
+		verify( acronymRepository ).getByAcronym( "ASAP" );
+	}
 
-    }
+	@Test
+	public void shouldReturnNiceMessageIfNoAcronymFound() {
+		when( acronymRepository.getByAcronym( "ASAP" ) ).thenReturn( null );
+
+		String message = acronymRetriever.getAcronym( "ASAP" );
+
+		assertThat( message )
+				.isEqualTo( "No acronym found - you can add a new one though using /addacronym" );
+	}
 }
