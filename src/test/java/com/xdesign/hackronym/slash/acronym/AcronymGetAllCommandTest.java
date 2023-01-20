@@ -19,7 +19,7 @@ import com.xdesign.hackronym.retriever.AcronymRetriever;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class AcronymGetAllCommandTest {
+class AcronymGetAllCommandTest {
 
 	private AcronymGetAllCommand acronymGetAllCommand;
 
@@ -41,7 +41,7 @@ public class AcronymGetAllCommandTest {
 	}
 
 	@Test
-	public void shouldCallAcronymRetriever() {
+	void shouldCallAcronymRetriever() {
 		final Response response = acronymGetAllCommand.doRespond( "", slashCommandRequest,
 				slashCommandContext );
 

@@ -47,6 +47,6 @@ public class AppHomeListener implements BoltEventHandler<AppHomeOpenedEvent> {
 						divider(), section( section -> section.text( markdownText( mt -> mt.text(
 								"Just type a sentence with an acronym and i'll decipher the acronyms!\n" ) ) ) ),
 						divider(), section( section -> section.text( markdownText( mt -> mt.text(
-								"Command Examples:\n" + "/getacronym ASAP\n" + "/getall\n" + "/addacronym ASAP,As Soon As Possible,Something is needed really fast.\n" ) ) ) ) ) ) );
+								"Command Examples:\n" + "/whatis ASAP\n" + "/getall\n" + "/addacronym ASAP,As Soon As Possible,Something is needed really fast.\n" ) ) ) ) ) ) );
 	}
 }

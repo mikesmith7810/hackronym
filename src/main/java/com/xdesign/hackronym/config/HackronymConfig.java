@@ -10,8 +10,6 @@ public class HackronymConfig {
 
 	@Bean
 	public App hackronymApp() {
-		App app = new App();
-
-		return app;
+		return new App();
 	}
 }

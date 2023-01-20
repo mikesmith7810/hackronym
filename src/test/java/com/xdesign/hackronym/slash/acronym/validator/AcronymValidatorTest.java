@@ -10,7 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class AcronymValidatorTest {
+class AcronymValidatorTest {
 	AcronymValidator acronymValidator;
 
 	@BeforeEach
@@ -20,23 +20,23 @@ public class AcronymValidatorTest {
 	}
 
 	@Test
-	public void shouldReturnTrueIfAllThreeParamsSupplied() {
+	void shouldReturnTrueIfAllThreeParamsSupplied() {
 		assertThat( acronymValidator.isValid( "ASAP,as soon as possible,its pretty quick" ) )
 				.isTrue();
 	}
 
 	@Test
-	public void shouldReturnFalseIfAllThreeParamsAreNotSupplied() {
+	void shouldReturnFalseIfAllThreeParamsAreNotSupplied() {
 		assertThat( acronymValidator.isValid( "ASAP,its pretty quick" ) ).isFalse();
 	}
 
 	@Test
-	public void shouldReturnFalseIfAllThreeParamsAreNotBlank() {
+	void shouldReturnFalseIfAllThreeParamsAreNotBlank() {
 		assertThat( acronymValidator.isValid( "ASAP,its pretty quick," ) ).isFalse();
 	}
 
 	@Test
-	public void shouldReturnFalseIfFirstParamIsNotAllUppercase() {
+	void shouldReturnFalseIfFirstParamIsNotAllUppercase() {
 		assertThat( acronymValidator.isValid( "notuppercase,its pretty quick," ) ).isFalse();
 	}
 }

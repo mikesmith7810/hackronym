@@ -19,7 +19,7 @@ import com.xdesign.hackronym.retriever.AcronymRetriever;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class AcronymGetCommandTest {
+class AcronymGetCommandTest {
 
 	private AcronymGetCommand acronymCommand;
 
@@ -45,7 +45,7 @@ public class AcronymGetCommandTest {
 	}
 
 	@Test
-	public void shouldCallAcronymRetriever() {
+	void shouldCallAcronymRetriever() {
 		final Response response = acronymCommand.doRespond( "ASAP", slashCommandRequest,
 				slashCommandContext );
 
@@ -53,7 +53,7 @@ public class AcronymGetCommandTest {
 	}
 
 	@Test
-	public void shouldReturnNiceMessageIfNotFound() {
+	void shouldReturnNiceMessageIfNotFound() {
 
 		when( acronymRetriever.getAcronym( "ASAP" ) )
 				.thenReturn( "No acronym found - you can add a new one though using /addacronym" );

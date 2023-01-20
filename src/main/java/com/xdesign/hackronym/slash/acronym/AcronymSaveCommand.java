@@ -35,10 +35,10 @@ public class AcronymSaveCommand extends MessageExtractingCommand {
 	protected Response doRespond( final String message, final SlashCommandRequest request,
 			final SlashCommandContext context ) {
 
-		String returnMessage = null;
+
 
 		if ( acronymValidator.isValid( message ) ) {
-			Acronym acronym = acronymStorer.storeAcronym( acronymParser.parse( message ) );
+			final Acronym acronym = acronymStorer.storeAcronym( acronymParser.parse( message ) );
 
 			return context.ack( SlashCommandResponse.builder()
 					.responseType( "in_channel" )

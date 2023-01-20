@@ -12,7 +12,7 @@ import com.xdesign.hackronym.slash.annotations.SlashCommand;
 
 import lombok.extern.slf4j.Slf4j;
 
-@SlashCommand("getacronym")
+@SlashCommand("whatis")
 @Slf4j
 @Component
 public class AcronymGetCommand extends MessageExtractingCommand {

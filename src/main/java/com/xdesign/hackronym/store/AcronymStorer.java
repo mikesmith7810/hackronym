@@ -15,7 +15,5 @@ public class AcronymStorer {
 
 	public Acronym storeAcronym( final Acronym acronym ) {
 		return acronymRepository.save( acronym );
-
 	}
-
 }

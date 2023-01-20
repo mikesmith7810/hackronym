@@ -20,7 +20,7 @@ import com.xdesign.hackronym.store.AcronymStorer;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class AcronymSaveCommandTest {
+class AcronymSaveCommandTest {
 
 	private AcronymSaveCommand acronymSaveCommand;
 
@@ -45,7 +45,7 @@ public class AcronymSaveCommandTest {
 				acronymValidator,
 				acronymParser );
 
-		Acronym acronym = Acronym.builder()
+		final Acronym acronym = Acronym.builder()
 				.acronym( "ASAP" )
 				.meaning( "As soon as possible" )
 				.description( "Very quickly" )
@@ -60,7 +60,7 @@ public class AcronymSaveCommandTest {
 	}
 
 	@Test
-	public void shouldCallAcronymRetriever() {
+	void shouldCallAcronymRetriever() {
 		final Response response = acronymSaveCommand.doRespond(
 				"ASAP,As soon as possible,Very quickly", slashCommandRequest, slashCommandContext );
 
@@ -70,5 +70,4 @@ public class AcronymSaveCommandTest {
 				.description( "Very quickly" )
 				.build() );
 	}
-
 }

@@ -8,7 +8,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 @ServletComponentScan
 public class HackronymApplication {
 
-	public static void main( String[] args ) throws Exception {
+	public static void main( final String[] args ) {
 		SpringApplication.run( HackronymApplication.class, args );
 	}
 }

@@ -12,12 +12,13 @@ import com.xdesign.hackronym.domain.Acronym;
 public class AcronymRetriever {
 	private final AcronymRepository acronymRepository;
 
-	public AcronymRetriever( AcronymRepository acronymRepository ) {
+	public AcronymRetriever( final AcronymRepository acronymRepository ) {
 		this.acronymRepository = acronymRepository;
 	}
 
 	public String getAcronym( final String acronym ) {
-		Optional<Acronym> result = Optional.ofNullable( acronymRepository.getByAcronym( acronym ) );
+		final Optional<Acronym> result = Optional
+				.ofNullable( acronymRepository.getByAcronym( acronym ) );
 
 		if ( result.isEmpty() ) {
 			return "No acronym found - you can add a new one though using /addacronym";

@@ -15,7 +15,7 @@ import com.xdesign.hackronym.db.AcronymRepository;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class AcronymRetrieverTest {
+class AcronymRetrieverTest {
 
 	private AcronymRetriever acronymRetriever;
 
@@ -28,24 +28,24 @@ public class AcronymRetrieverTest {
 	}
 
 	@Test
-	public void shoudlCallOutToAcronymRepository() {
-		String acronym = acronymRetriever.getAcronym( "ASAP" );
+	void shoudlCallOutToAcronymRepository() {
+		acronymRetriever.getAcronym( "ASAP" );
 
 		verify( acronymRepository ).getByAcronym( "ASAP" );
 	}
 
 	@Test
-	public void shoudlGetAllAcronyms() {
+	void shoudlGetAllAcronyms() {
 		acronymRetriever.getAll();
 
 		verify( acronymRepository ).findAll();
 	}
 
 	@Test
-	public void shouldReturnNiceMessageIfNoAcronymFound() {
+	void shouldReturnNiceMessageIfNoAcronymFound() {
 		when( acronymRepository.getByAcronym( "ASAP" ) ).thenReturn( null );
 
-		String message = acronymRetriever.getAcronym( "ASAP" );
+		final String message = acronymRetriever.getAcronym( "ASAP" );
 
 		assertThat( message )
 				.isEqualTo( "No acronym found - you can add a new one though using /addacronym" );

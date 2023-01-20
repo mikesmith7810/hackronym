@@ -3,6 +3,7 @@ package com.xdesign.hackronym.event.bean;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -34,7 +35,8 @@ public class EventListenerBeanPostProcessor implements BeanPostProcessor {
 
 	@Override
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public Object postProcessAfterInitialization( final Object bean, final String beanName )
+	public Object postProcessAfterInitialization( @NotNull final Object bean,
+			@NotNull final String beanName )
 			throws BeansException {
 
 		final Class<?> beanClass = AopUtils.getTargetClass( bean );

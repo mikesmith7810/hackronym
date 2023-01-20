@@ -12,7 +12,7 @@ import com.xdesign.hackronym.domain.Acronym;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class AcronymParserTest {
+class AcronymParserTest {
 	private AcronymParser acronymParser;
 
 	@BeforeEach
@@ -21,8 +21,8 @@ public class AcronymParserTest {
 	}
 
 	@Test
-	public void shouldReturnAnAcronymFromSuppliedMessage() {
-		Acronym acronym = acronymParser.parse( "ASAP,As soon as,very quickly" );
+	void shouldReturnAnAcronymFromSuppliedMessage() {
+		final Acronym acronym = acronymParser.parse( "ASAP,As soon as,very quickly" );
 
 		assertThat( acronym.getAcronym() ).isEqualTo( "ASAP" );
 		assertThat( acronym.getMeaning() ).isEqualTo( "As soon as" );

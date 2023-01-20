@@ -1,7 +1,6 @@
 package com.xdesign.hackronym.slash.acronym.validator;
 
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
@@ -14,15 +13,14 @@ public class AcronymValidator {
 				params ) && !firstParamIsNotUpperCase( params[0] );
 	}
 
-	private boolean firstParamIsNotUpperCase( String param ) {
+	private boolean firstParamIsNotUpperCase( final String param ) {
 		return !param.toUpperCase().equals( param );
 	}
 
 	private boolean aParamIsBlank( final String[] params ) {
-		final int size = Arrays.stream( params )
+		final int size = (int) Arrays.stream( params )
 				.filter( param -> param.length() > 0 )
-				.collect( Collectors.toList() )
-				.size();
+				.count();
 		return size != 3;
 
 	}
