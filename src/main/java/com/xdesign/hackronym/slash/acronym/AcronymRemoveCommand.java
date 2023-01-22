@@ -1,29 +1,25 @@
 package com.xdesign.hackronym.slash.acronym;
 
-import java.util.stream.Collectors;
-
 import org.springframework.stereotype.Component;
 
 import com.slack.api.app_backend.slash_commands.response.SlashCommandResponse;
 import com.slack.api.bolt.context.builtin.SlashCommandContext;
 import com.slack.api.bolt.request.builtin.SlashCommandRequest;
 import com.slack.api.bolt.response.Response;
-import com.xdesign.hackronym.domain.Acronym;
-import com.xdesign.hackronym.retriever.AcronymRetriever;
+import com.xdesign.hackronym.remover.AcronymRemover;
 import com.xdesign.hackronym.slash.MessageExtractingCommand;
 import com.xdesign.hackronym.slash.annotations.SlashCommand;
 
 import lombok.extern.slf4j.Slf4j;
 
-@SlashCommand("getallacronyms")
+@SlashCommand("removeacronym")
 @Slf4j
 @Component
-public class AcronymGetAllCommand extends MessageExtractingCommand {
+public class AcronymRemoveCommand extends MessageExtractingCommand {
+	final AcronymRemover acronymRemover;
 
-	private final AcronymRetriever acronymRetriever;
-
-	public AcronymGetAllCommand( final AcronymRetriever acronymRetriever ) {
-		this.acronymRetriever = acronymRetriever;
+	public AcronymRemoveCommand( final AcronymRemover acronymRemover ) {
+		this.acronymRemover = acronymRemover;
 	}
 
 	protected Response doRespond( final String message, final SlashCommandRequest request,
@@ -31,10 +27,9 @@ public class AcronymGetAllCommand extends MessageExtractingCommand {
 
 		return context.ack( SlashCommandResponse.builder()
 				.responseType( "in_channel" )
-				.text( acronymRetriever.getAll()
-						.stream()
-						.map( Acronym::toString )
-						.collect( Collectors.joining( "\n" ) ) )
+				.text( acronymRemover.removeAcronym( message ) )
 				.build() );
+
 	}
+
 }

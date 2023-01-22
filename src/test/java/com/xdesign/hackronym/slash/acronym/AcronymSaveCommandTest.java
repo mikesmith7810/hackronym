@@ -1,7 +1,6 @@
 package com.xdesign.hackronym.slash.acronym;
 
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,8 +13,6 @@ import com.slack.api.bolt.context.builtin.SlashCommandContext;
 import com.slack.api.bolt.request.builtin.SlashCommandRequest;
 import com.slack.api.bolt.response.Response;
 import com.xdesign.hackronym.domain.Acronym;
-import com.xdesign.hackronym.slash.acronym.parser.AcronymParser;
-import com.xdesign.hackronym.slash.acronym.validator.AcronymValidator;
 import com.xdesign.hackronym.store.AcronymStorer;
 
 @ExtendWith(MockitoExtension.class)
@@ -28,46 +25,29 @@ class AcronymSaveCommandTest {
 	private AcronymStorer acronymStorer;
 
 	@Mock
-	AcronymValidator acronymValidator;
-
-	@Mock
-	AcronymParser acronymParser;
-
-	@Mock
 	private SlashCommandRequest slashCommandRequest;
 
 	@Mock
 	private SlashCommandContext slashCommandContext;
+	private Acronym acronym;
 
 	@BeforeEach
 	public void setup() {
-		acronymSaveCommand = new AcronymSaveCommand( acronymStorer,
-				acronymValidator,
-				acronymParser );
+		acronymSaveCommand = new AcronymSaveCommand( acronymStorer );
 
-		final Acronym acronym = Acronym.builder()
+		acronym = Acronym.builder()
 				.acronym( "ASAP" )
 				.meaning( "As soon as possible" )
 				.description( "Very quickly" )
 				.build();
-
-		when( acronymValidator.isValid( "ASAP,As soon as possible,Very quickly" ) )
-				.thenReturn( true );
-		when( acronymParser.parse( "ASAP,As soon as possible,Very quickly" ) )
-				.thenReturn( acronym );
-		when( acronymStorer.storeAcronym( acronym ) ).thenReturn( acronym );
-
 	}
 
 	@Test
-	void shouldCallAcronymRetriever() {
+	void shouldCallAcronymStorer() {
 		final Response response = acronymSaveCommand.doRespond(
-				"ASAP,As soon as possible,Very quickly", slashCommandRequest, slashCommandContext );
+				"ASAP,As Soon As Possible,Pretty Quick", slashCommandRequest, slashCommandContext );
 
-		verify( acronymStorer ).storeAcronym( Acronym.builder()
-				.acronym( "ASAP" )
-				.meaning( "As soon as possible" )
-				.description( "Very quickly" )
-				.build() );
+		verify( acronymStorer ).storeAcronym( "ASAP,As Soon As Possible,Pretty Quick" );
 	}
+
 }

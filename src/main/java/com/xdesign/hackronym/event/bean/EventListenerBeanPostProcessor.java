@@ -36,8 +36,7 @@ public class EventListenerBeanPostProcessor implements BeanPostProcessor {
 	@Override
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public Object postProcessAfterInitialization( @NotNull final Object bean,
-			@NotNull final String beanName )
-			throws BeansException {
+			@NotNull final String beanName ) throws BeansException {
 
 		final Class<?> beanClass = AopUtils.getTargetClass( bean );
 		if ( !BoltEventHandler.class.isAssignableFrom( beanClass ) ) {

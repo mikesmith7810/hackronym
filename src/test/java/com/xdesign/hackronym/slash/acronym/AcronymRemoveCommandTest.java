@@ -1,7 +1,6 @@
 package com.xdesign.hackronym.slash.acronym;
 
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,43 +9,40 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.google.common.collect.ImmutableList;
 import com.slack.api.bolt.context.builtin.SlashCommandContext;
 import com.slack.api.bolt.request.builtin.SlashCommandRequest;
 import com.slack.api.bolt.response.Response;
 import com.xdesign.hackronym.domain.Acronym;
-import com.xdesign.hackronym.retriever.AcronymRetriever;
+import com.xdesign.hackronym.remover.AcronymRemover;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class AcronymGetAllCommandTest {
+class AcronymRemoveCommandTest {
 
-	private AcronymGetAllCommand acronymGetAllCommand;
+	private AcronymRemoveCommand acronymRemoveCommand;
 
 	@Mock
-	private AcronymRetriever acronymRetriever;
+	private AcronymRemover acronymRemover;
 
 	@Mock
 	private SlashCommandRequest slashCommandRequest;
 
 	@Mock
 	private SlashCommandContext slashCommandContext;
+	private Acronym acronym;
 
 	@BeforeEach
 	public void setup() {
-		acronymGetAllCommand = new AcronymGetAllCommand( acronymRetriever );
-
-		when( acronymRetriever.getAll() )
-				.thenReturn( ImmutableList.of( Acronym.builder().acronym( "ASSP" ).build(),
-						Acronym.builder().acronym( "TEST" ).build() ) );
+		acronymRemoveCommand = new AcronymRemoveCommand( acronymRemover );
 	}
 
 	@Test
-	void shouldCallAcronymRetriever() {
-		final Response response = acronymGetAllCommand.doRespond( "", slashCommandRequest,
+	void shouldCallAcronymRemover() {
+
+		final Response response = acronymRemoveCommand.doRespond( "ASAP", slashCommandRequest,
 				slashCommandContext );
 
-		verify( acronymRetriever ).getAll();
+		verify( acronymRemover ).removeAcronym( "ASAP" );
 	}
 
 }
