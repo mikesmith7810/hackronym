@@ -48,6 +48,7 @@ class AcronymRetrieverTest {
 		final String message = acronymRetriever.getAcronym( "ASAP" );
 
 		assertThat( message )
-				.isEqualTo( "No acronym found - you can add a new one though using /addacronym" );
+				.isEqualTo(
+						"No acronym found for *ASAP* - you can add a new one though using /addacronym" );
 	}
 }

@@ -21,7 +21,7 @@ public class AcronymRetriever {
 				.ofNullable( acronymRepository.getByAcronym( acronym ) );
 
 		if ( result.isEmpty() ) {
-			return "No acronym found - you can add a new one though using /addacronym";
+			return "No acronym found for " + "*" + acronym + "*" + " - you can add a new one though using /addacronym";
 		} else
 			return result.get().toString();
 	}
