@@ -48,9 +48,10 @@ Add the app to your slack instance and click onto the Home tab - you should get 
 
 Go to the 'hackronymtest' slack channel and type -
 
+### Next Steps 23/01/2023
 
-### Next Steps 10/02/2023
-Get the basic service setup
+- Add update slash
+- Add reaction for WTF
 
 
 
