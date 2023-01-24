@@ -23,11 +23,6 @@ Subscriptions and Slash Commands )
 
 `Start MySQL from Mac Preferences > MySQL (I find i have to stop and restart the instance to allow me to connect)`
 
-- Register Slack Apps OAUTH Token as an environment variable (until we get somthing better sorted out)
-- https://api.slack.com/apps - Generate a new token here - it will begin with 'xoxe.xoxp'
-
-`export SLACK_OAUTH_TOKEN=<slack oauth token>`
-
 - And the signing secret and bot token - you cna get these from the apps console
 
 `export SLACK_SIGNING_SECRET=<slack app signing secret>`
@@ -36,7 +31,7 @@ Subscriptions and Slash Commands )
 
 `echo $SLACK_OAUTH_TOKEN` (check its set properly)
 
-- Cake Springboot Application - (in the same terminal where you set the slack oauth token env variable)
+- Hackronym Springboot Application - (in the same terminal where you set the slack oauth token env variable)
 
 `./gradlew bootRun`
 
@@ -48,10 +43,11 @@ Add the app to your slack instance and click onto the Home tab - you should get 
 
 Go to the 'hackronymtest' slack channel and type -
 
-### Next Steps 23/01/2023
+### Next Steps 24/01/2023
 
 - Add update slash
-- Add reaction for WTF
+- Bot can't react to its own posts
+- Multiple reactions on one post result in a link back to the original bots post
 
 
 
