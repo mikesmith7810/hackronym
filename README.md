@@ -2,7 +2,8 @@
 
 ### **Overview**
 
-Hackronym is a service for a slack app to talk to it. It analyses a block opf text, and deciphers any acronyms in the text. It then returns these to the slack app.
+Hackronym is a service for a slack app to talk to it. It analyses a block opf text, and deciphers any acronyms in the
+text. It then returns these to the slack app.
 
 ### **Architecture Running Locally**
 
@@ -11,6 +12,12 @@ Hackronym is a service for a slack app to talk to it. It analyses a block opf te
 ### **Useful Links**
 
 Slack API App Console - https://api.slack.com/apps
+
+### Warning!!!
+
+The port is currently set to 5000 which matches the Elastic Beanstalk default port. This doesnt work (on my mac) as the
+port clashes with something else running. I still have to fix this or do something... For now, you can update the port
+in application.properties to 3000 and that will work when running locally.
 
 ### To Run
 
@@ -28,8 +35,6 @@ Subscriptions and Slash Commands )
 `export SLACK_SIGNING_SECRET=<slack app signing secret>`
 
 `export SLACK_BOT_TOKEN=<slack bot token>`
-
-`echo $SLACK_OAUTH_TOKEN` (check its set properly)
 
 - Hackronym Springboot Application - (in the same terminal where you set the slack oauth token env variable)
 
