@@ -15,7 +15,8 @@ import com.xdesign.hackronym.db.AcronymRepository;
 import com.xdesign.hackronym.domain.Acronym;
 import com.xdesign.hackronym.retriever.AcronymRetriever;
 import com.xdesign.hackronym.slash.acronym.parser.AcronymParser;
-import com.xdesign.hackronym.slash.acronym.validator.AcronymValidator;
+
+import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -24,9 +25,6 @@ public class AcronymStorerTest {
 
 	@Mock
 	private AcronymRepository acronymRepository;
-
-	@Mock
-	AcronymValidator acronymValidator;
 
 	@Mock
 	AcronymParser acronymParser;
@@ -39,7 +37,6 @@ public class AcronymStorerTest {
 	@BeforeEach
 	public void setup() {
 		this.acroynmStorer = new AcronymStorer( acronymRepository,
-				acronymValidator,
 				acronymParser,
 				acronymRetriever );
 
@@ -53,15 +50,12 @@ public class AcronymStorerTest {
 	@Test
 	public void shouldStoreThePassedAcronym() {
 
-		when( acronymValidator.isValid( "MAD,Magic and Dragons,Something mystifying" ) )
-				.thenReturn( Boolean.TRUE );
 		when( acronymParser.parse( "MAD,Magic and Dragons,Something mystifying" ) )
-				.thenReturn( acronym );
+				.thenReturn( Optional.of(acronym) );
 		when( acronymRetriever.getAcronym( acronym.getAcronym() ) ).thenReturn( "No Result Found" );
 
 		acroynmStorer.storeAcronym( "MAD,Magic and Dragons,Something mystifying" );
 
-		verify( acronymValidator ).isValid( "MAD,Magic and Dragons,Something mystifying" );
 		verify( acronymParser ).parse( "MAD,Magic and Dragons,Something mystifying" );
 		verify( acronymRetriever ).getAcronym( acronym.getAcronym() );
 		verify( acronymRepository ).save( acronym );
@@ -71,10 +65,8 @@ public class AcronymStorerTest {
 	@Test
 	void shouldNotStoreAcronymIfAcronymAlreadyExists() {
 
-		when( acronymValidator.isValid( "MAD,Magic and Dragons,Something mystifying" ) )
-				.thenReturn( Boolean.TRUE );
 		when( acronymParser.parse( "MAD,Magic and Dragons,Something mystifying" ) )
-				.thenReturn( acronym );
+				.thenReturn( Optional.of(acronym) );
 		when( acronymRetriever.getAcronym( acronym.getAcronym() ) )
 				.thenReturn( "MAD,Magic and Dragons,Something mystifying" );
 
@@ -86,8 +78,8 @@ public class AcronymStorerTest {
 	@Test
 	void shouldNotStoreAcronymIfAcronymIsNotValid() {
 
-		when( acronymValidator.isValid( "Test,Magic and Dragons,Something mystifying" ) )
-				.thenReturn( Boolean.FALSE );
+		when( acronymParser.parse( "Test,Magic and Dragons,Something mystifying" ) )
+				.thenReturn( Optional.empty() );
 
 		acroynmStorer.storeAcronym( "Test,Magic and Dragons,Something mystifying" );
 

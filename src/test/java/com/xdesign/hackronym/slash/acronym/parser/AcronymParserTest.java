@@ -8,8 +8,6 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.xdesign.hackronym.domain.Acronym;
-
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class AcronymParserTest {
@@ -22,7 +20,11 @@ class AcronymParserTest {
 
 	@Test
 	void shouldReturnAnAcronymFromSuppliedMessage() {
-		final Acronym acronym = acronymParser.parse( "ASAP,As soon as,very quickly" );
+		final var acronymOpt = acronymParser.parse( "ASAP,As soon as,very quickly" );
+
+		assertThat(acronymOpt).isPresent();
+
+		final var acronym = acronymOpt.get();
 
 		assertThat( acronym.getAcronym() ).isEqualTo( "ASAP" );
 		assertThat( acronym.getMeaning() ).isEqualTo( "As soon as" );
@@ -31,7 +33,11 @@ class AcronymParserTest {
 
 	@Test
 	void shouldReturnAnAcronymFromSuppliedMessageWithCommasInDescription() {
-		final Acronym acronym = acronymParser.parse( "ASAP,As soon as,very quickly, or whatever" );
+		final var acronymOpt = acronymParser.parse( "ASAP,As soon as,very quickly, or whatever" );
+
+		assertThat(acronymOpt).isPresent();
+
+		final var acronym = acronymOpt.get();
 
 		assertThat( acronym.getAcronym() ).isEqualTo( "ASAP" );
 		assertThat( acronym.getMeaning() ).isEqualTo( "As soon as" );
@@ -40,7 +46,11 @@ class AcronymParserTest {
 
 	@Test
 	void shouldSupportAlternativeSeparator() {
-		final Acronym acronym = acronymParser.parse( "ASAP|As soon as|very quickly" );
+		final var acronymOpt = acronymParser.parse( "ASAP|As soon as|very quickly" );
+
+		assertThat(acronymOpt).isPresent();
+
+		final var acronym = acronymOpt.get();
 
 		assertThat( acronym.getAcronym() ).isEqualTo( "ASAP" );
 		assertThat( acronym.getMeaning() ).isEqualTo( "As soon as" );
@@ -49,7 +59,11 @@ class AcronymParserTest {
 
 	@Test
 	void shouldSupportCommasInDescription() {
-		final Acronym acronym = acronymParser.parse("PICNIC|Problem In Chair, Not In Computer|Indicates that I/we/you/they caused the problem, and the software is fine. .");
+		final var acronymOpt = acronymParser.parse("PICNIC|Problem In Chair, Not In Computer|Indicates that I/we/you/they caused the problem, and the software is fine. .");
+
+		assertThat(acronymOpt).isPresent();
+
+		final var acronym = acronymOpt.get();
 
 		assertThat( acronym.getAcronym() ).isEqualTo( "PICNIC" );
 		assertThat( acronym.getMeaning() ).isEqualTo( "Problem In Chair, Not In Computer" );

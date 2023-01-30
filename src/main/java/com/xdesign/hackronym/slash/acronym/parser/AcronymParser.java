@@ -13,10 +13,9 @@ public class AcronymParser {
 	private static final Pattern PSV_RX = Pattern.compile("^(?<acronym>[^|]+)\\|(?<meaning>[^|]+)\\|(?<description>[^|]+)$");
 	private static final Pattern CSV_RX = Pattern.compile("^(?<acronym>[^,]+),(?<meaning>[^,]+),(?<description>.+)$");
 
-	public Acronym parse(final String message) {
+	public Optional<Acronym> parse(final String message) {
 		return parsePSV(message)
-				.or(() -> parseCSV(message))
-				.orElseThrow(IllegalArgumentException::new);
+				.or(() -> parseCSV(message));
 	}
 
 	private Optional<Acronym> parsePSV(final String message ) {
