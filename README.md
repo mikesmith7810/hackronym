@@ -19,6 +19,10 @@ The port is currently set to 5000 which matches the Elastic Beanstalk default po
 port clashes with something else running. I still have to fix this or do something... For now, you can update the port
 in application.properties to 3000 and that will work when running locally.
 
+### To Build
+
+./gradlew clean build
+
 ### To Run
 
 - Ngrok -  `ngrok http 3000`
