@@ -1,6 +1,7 @@
 package com.xdesign.hackronym.slash;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import com.slack.api.bolt.context.builtin.SlashCommandContext;
 import com.slack.api.bolt.handler.builtin.SlashCommandHandler;
@@ -22,10 +23,10 @@ public abstract class MessageExtractingCommand implements SlashCommandHandler {
 	@Override
 	public final Response apply( final SlashCommandRequest request,
 			final SlashCommandContext context ) throws IOException, SlackApiException {
-		String message = "";
-		if ( request.getPayload().getText() != null ) {
-			message = request.getPayload().getText().trim();
-		}
+
+		final var message = Optional.ofNullable(request.getPayload().getText())
+				.map(String::trim)
+				.orElse("");
 
 		try {
 			return doRespond( message, request, context );

@@ -1,5 +1,7 @@
 package com.xdesign.hackronym.slash.acronym;
 
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import com.slack.api.app_backend.slash_commands.response.SlashCommandResponse;
@@ -15,12 +17,9 @@ import lombok.extern.slf4j.Slf4j;
 @SlashCommand("removeacronym")
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class AcronymRemoveCommand extends MessageExtractingCommand {
-	final AcronymRemover acronymRemover;
-
-	public AcronymRemoveCommand( final AcronymRemover acronymRemover ) {
-		this.acronymRemover = acronymRemover;
-	}
+	private final @NonNull AcronymRemover acronymRemover;
 
 	protected Response doRespond( final String message, final SlashCommandRequest request,
 			final SlashCommandContext context ) {

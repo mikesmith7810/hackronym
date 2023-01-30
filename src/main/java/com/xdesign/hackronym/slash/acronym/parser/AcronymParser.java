@@ -1,5 +1,6 @@
 package com.xdesign.hackronym.slash.acronym.parser;
 
+import lombok.NonNull;
 import org.springframework.stereotype.Component;
 
 import com.xdesign.hackronym.domain.Acronym;
@@ -13,7 +14,7 @@ public class AcronymParser {
 	private static final Pattern PSV_RX = Pattern.compile("^(?<acronym>[^|]+)\\|(?<meaning>[^|]+)\\|(?<description>[^|]+)$");
 	private static final Pattern CSV_RX = Pattern.compile("^(?<acronym>[^,]+),(?<meaning>[^,]+),(?<description>.+)$");
 
-	public Optional<Acronym> parse(final String message) {
+	public @NonNull Optional<Acronym> parse(final @NonNull String message) {
 		return parsePSV(message)
 				.or(() -> parseCSV(message));
 	}

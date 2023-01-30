@@ -1,30 +1,26 @@
 package com.xdesign.hackronym.remover;
 
-import java.util.Optional;
-
 import org.springframework.stereotype.Component;
 
 import com.xdesign.hackronym.db.AcronymRepository;
 import com.xdesign.hackronym.domain.Acronym;
 
-@Component
-public class AcronymRemover {
-	private final AcronymRepository acronymRepository;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
-	public AcronymRemover( final AcronymRepository acronymRepository ) {
-		this.acronymRepository = acronymRepository;
+@Component
+@RequiredArgsConstructor
+public class AcronymRemover {
+	private final @NonNull AcronymRepository acronymRepository;
+
+	public @NonNull String removeAcronym(final @NonNull String acronym ) {
+		return acronymRepository.getByAcronym(acronym)
+				.map(this::handleDelete)
+				.orElse("No acronym found - you can add a new one though using /addacronym");
 	}
 
-	public String removeAcronym( final String acronym ) {
-
-		final Optional<Acronym> result = Optional
-				.ofNullable( acronymRepository.getByAcronym( acronym ) );
-
-		if ( result.isEmpty() ) {
-			return "No acronym found - you can add a new one though using /addacronym";
-		} else {
-			acronymRepository.delete( result.get() );
-			return "Removed : " + acronym;
-		}
+	private String handleDelete(final Acronym acronym) {
+		acronymRepository.delete(acronym);
+		return "Removed : " + acronym;
 	}
 }

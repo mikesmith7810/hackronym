@@ -13,6 +13,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.xdesign.hackronym.db.AcronymRepository;
 
+import java.util.Optional;
+
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class AcronymRetrieverTest {
@@ -43,7 +45,7 @@ class AcronymRetrieverTest {
 
 	@Test
 	void shouldReturnNiceMessageIfNoAcronymFound() {
-		when( acronymRepository.getByAcronym( "ASAP" ) ).thenReturn( null );
+		when( acronymRepository.getByAcronym( "ASAP" ) ).thenReturn(Optional.empty() );
 
 		final String message = acronymRetriever.getAcronym( "ASAP" );
 
