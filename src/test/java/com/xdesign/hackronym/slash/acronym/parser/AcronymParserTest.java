@@ -28,4 +28,13 @@ class AcronymParserTest {
 		assertThat( acronym.getMeaning() ).isEqualTo( "As soon as" );
 		assertThat( acronym.getDescription() ).isEqualTo( "very quickly" );
 	}
+
+	@Test
+	void shouldSupportEscapedCommasInAllFields() {
+		final Acronym acronym = acronymParser.parse( "\"PIC,NIC\", \"Problem In Chair, Not In Computer\", \"Testing, Commas\"");
+
+		assertThat( acronym.getAcronym() ).isEqualTo( "PIC,NIC" );
+		assertThat( acronym.getMeaning() ).isEqualTo( "Problem In Chair, Not In Computer" );
+		assertThat( acronym.getDescription() ).isEqualTo( "Testing, Commas" );
+	}
 }
