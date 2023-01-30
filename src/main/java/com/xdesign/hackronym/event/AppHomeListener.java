@@ -47,6 +47,10 @@ public class AppHomeListener implements BoltEventHandler<AppHomeOpenedEvent> {
 						divider(), section( section -> section.text( markdownText( mt -> mt.text(
 								"Just type a sentence with an acronym and i'll decipher the acronyms!\n" ) ) ) ),
 						divider(), section( section -> section.text( markdownText( mt -> mt.text(
-								"Command Examples:\n" + "/whatis ASAP\n" + "/getall\n" + "/addacronym ASAP,As Soon As Possible,Something is needed really fast.\n" + "/removeacronym ASAP\n" ) ) ) ) ) ) );
+								"Command Examples:\n" + "/whatis ASAP\n" + "/getall\n" + "/addacronym ASAP,As Soon As Possible,Something is needed really fast.\n" + "/removeacronym ASAP\n" ) ) ) ),
+						divider(), section( section -> section.text( markdownText( mt -> mt.text(
+								"Note that the `/addacronym` command requires three sections - the acronym, the short meaning, and longer description\n" +
+								"If you need to have commas in any of these sections you can use the `|` symbol to separate them rather than the `,`, e.g\n" +
+								"`/addacronym PICNIC|Problem In Chair, Not In Computer|Indicates that the user is the problem, not the software\n") ) ) ) ) ) );
 	}
 }
