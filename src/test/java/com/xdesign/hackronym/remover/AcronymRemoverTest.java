@@ -13,6 +13,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.xdesign.hackronym.db.AcronymRepository;
 import com.xdesign.hackronym.domain.Acronym;
 
+import java.util.Optional;
+
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class AcronymRemoverTest {
@@ -37,7 +39,7 @@ class AcronymRemoverTest {
 
 	@Test
 	void shouldRemoveAcronym() {
-		when( acronymRepository.getByAcronym( "ASAP" ) ).thenReturn( acronym );
+		when( acronymRepository.getByAcronym( "ASAP" ) ).thenReturn( Optional.of( acronym ) );
 
 		acronymRemover.removeAcronym( "ASAP" );
 

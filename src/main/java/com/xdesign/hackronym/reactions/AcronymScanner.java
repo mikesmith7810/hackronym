@@ -1,22 +1,21 @@
 package com.xdesign.hackronym.reactions;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
+import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
+import lombok.NonNull;
+
 @Component
 public class AcronymScanner {
-    public List<String> scanForAcronyms(final String message) {
-        final List<String> acronyms = new ArrayList<>();
+	private static final Pattern PATTERN = Pattern.compile( "[A-Z][A-Z]+" );
 
-        final Pattern pattern = Pattern.compile("[A-Z][A-Z]+");
-        final Matcher matcher = pattern.matcher(message);
-        while (matcher.find()) {
-            acronyms.add(matcher.group());
-        }
-        return acronyms;
+	public @NonNull List<String> scanForAcronyms( final @NonNull String message ) {
+        return PATTERN.matcher(message).results()
+                .map(MatchResult::group)
+                .collect(Collectors.toList());
     }
 }

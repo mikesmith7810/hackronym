@@ -2,6 +2,8 @@ package com.xdesign.hackronym.slash.acronym;
 
 import java.util.stream.Collectors;
 
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import com.slack.api.app_backend.slash_commands.response.SlashCommandResponse;
@@ -18,13 +20,10 @@ import lombok.extern.slf4j.Slf4j;
 @SlashCommand("getallacronyms")
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class AcronymGetAllCommand extends MessageExtractingCommand {
 
-	private final AcronymRetriever acronymRetriever;
-
-	public AcronymGetAllCommand( final AcronymRetriever acronymRetriever ) {
-		this.acronymRetriever = acronymRetriever;
-	}
+	private final @NonNull AcronymRetriever acronymRetriever;
 
 	protected Response doRespond( final String message, final SlashCommandRequest request,
 			final SlashCommandContext context ) {

@@ -2,7 +2,7 @@ package com.xdesign.hackronym.slash.bean;
 
 import java.util.regex.Pattern;
 
-import org.jetbrains.annotations.NotNull;
+import lombok.NonNull;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -30,8 +30,8 @@ public final class SlashCommandBeanPostProcessor implements BeanPostProcessor {
 	private final App app;
 
 	@Override
-	public Object postProcessAfterInitialization( @NotNull final Object bean,
-			@NotNull final String beanName ) throws BeansException {
+	public Object postProcessAfterInitialization( @NonNull final Object bean,
+			@NonNull final String beanName ) throws BeansException {
 
 		final Class<?> beanClass = AopUtils.getTargetClass( bean );
 		final SlashCommand ann = AnnotationUtils.findAnnotation( beanClass, SlashCommand.class );
